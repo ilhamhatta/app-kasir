@@ -1,0 +1,35 @@
+# =========================
+# GLOBAL
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# NODE / FRONTEND
+# =========================
+node_modules/
+frontend/node_modules/
+frontend/.env
+frontend/.env.*
+
+# =========================
+# LARAVEL / BACKEND
+# =========================
+backend/vendor/
+backend/.env
+backend/.env.*
+backend/storage/*.key
+backend/storage/logs/
+backend/bootstrap/cache/
+
+# =========================
+# GENERATED FILES
+# =========================
+backend/public/qrcodes/*.svg
+backend/public/storage
+
+# =========================
+# IDE
+# =========================
+.vscode/
+.idea/
