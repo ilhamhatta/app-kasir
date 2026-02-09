@@ -2,10 +2,11 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\OrderController;
-use App\Http\Controllers\Api\MenuController;
-use App\Http\Controllers\Api\AdminOrderController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\MenuController;
+use App\Http\Controllers\Api\OrderController;
+use App\Http\Controllers\Api\CafeTableController;
+use App\Http\Controllers\Api\AdminOrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,7 +39,11 @@ Route::middleware('auth:sanctum')->prefix('admin')->group(function () {
     // payment update
     Route::patch('/orders/{order}/payment', [AdminOrderController::class, 'updatePayment']);
 
-    Route::post('/tables', [App\Http\Controllers\Api\CafeTableController::class, 'store']);
+    // cafe table management
+    Route::post('/tables', [CafeTableController::class, 'store']);
+
+    // order notification
+    Route::get('/order-notification', [AdminOrderController::class, 'orderNotification']);
 });
 
 // API Routes for Menu and Orders

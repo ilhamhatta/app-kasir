@@ -7,12 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class OrderItem extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'order_id',
         'menu_id',
         'price',
         'qty',
-        'subtotal'
+        'subtotal',
     ];
 
     protected $hidden = ['id', 'order_id', 'menu_id', 'created_at', 'updated_at'];

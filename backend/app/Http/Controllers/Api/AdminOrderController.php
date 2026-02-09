@@ -13,9 +13,21 @@ class AdminOrderController extends Controller
      */
     public function index()
     {
-        return Order::with('table')
+        $orders = Order::with(['items.menu', 'table'])
             ->orderBy('created_at', 'desc')
             ->get();
+
+        return response()->json([
+            'stats' => [
+                'total' => $orders->count(),
+                'pending' => $orders->where('status', 'pending')->count(),
+                'confirmed' => $orders->where('status', 'confirmed')->count(),
+                'processing' => $orders->where('status', 'processing')->count(),
+                'completed' => $orders->where('status', 'completed')->count(),
+                'cancelled' => $orders->where('status', 'cancelled')->count(),
+            ],
+            'orders' => $orders
+        ]);
     }
 
     /**
@@ -23,7 +35,7 @@ class AdminOrderController extends Controller
      */
     public function show($id)
     {
-        $order = Order::with('items.menu', 'table')->find($id);
+        $order = Order::with(['items.menu', 'table'])->find($id);
 
         if (!$order) {
             return response()->json([
@@ -51,7 +63,6 @@ class AdminOrderController extends Controller
             ], 404);
         }
 
-        // Status flow yang DIIZINKAN
         $allowedTransitions = [
             'pending' => ['confirmed', 'cancelled'],
             'confirmed' => ['processing'],
@@ -62,7 +73,6 @@ class AdminOrderController extends Controller
             !isset($allowedTransitions[$order->status]) ||
             !in_array($request->status, $allowedTransitions[$order->status])
         ) {
-
             return response()->json([
                 'message' => 'Perubahan status tidak valid'
             ], 400);

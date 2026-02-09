@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             AdminUserSeeder::class,
             CafeTableSeeder::class,
             MenuSeeder::class,
+            OrderSeeder::class,
         ]);
     }
 }

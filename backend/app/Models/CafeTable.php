@@ -7,10 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class CafeTable extends Model
 {
-    protected $fillable = ['table_number', 'qr_code'];
+    use HasFactory;
+
+    protected $fillable = [
+        'table_number',
+        'qr_code',
+    ];
 
     public function orders()
     {
-        return $this->hasMany(Order::class);
+        return $this->hasMany(Order::class, 'cafe_table_id');
     }
 }

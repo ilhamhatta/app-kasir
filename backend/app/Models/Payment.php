@@ -7,11 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Payment extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'order_id',
         'method',
         'amount',
-        'paid_at'
+        'paid_at',
     ];
 
     public function order()

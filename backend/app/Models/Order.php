@@ -7,12 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'order_number',
         'cafe_table_id',
         'status',
         'total_price',
-        'payment_status'
+        'payment_status',
+        'payment_method',
     ];
 
     public function table()

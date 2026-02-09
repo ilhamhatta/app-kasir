@@ -1,13 +1,13 @@
 import axios from "axios";
 
-const api = axios.create({
-  baseURL: "http://192.168.1.2:8000/api",
+const apiAdmin = axios.create({
+  baseURL: "http://10.219.3.101:8000/api",
   headers: {
     Accept: "application/json",
   },
 });
 
-api.interceptors.request.use((config) => {
+apiAdmin.interceptors.request.use((config) => {
   const token = localStorage.getItem("admin_token");
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
@@ -15,4 +15,4 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-export default api;
+export default apiAdmin;
