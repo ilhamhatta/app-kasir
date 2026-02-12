@@ -17,7 +17,10 @@ frontend/.env.*
 # =========================
 backend/vendor/
 backend/.env
-backend/.env.*
+backend/.env.local
+backend/.env.production
+backend/.env.testing
+!backend/.env.example
 backend/storage/*.key
 backend/storage/logs/
 backend/bootstrap/cache/
